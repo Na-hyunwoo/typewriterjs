@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Example - clear entire text</title>
+</head>
+<body>
+
+  <div id="typewriter"></div>
+
+  <script src='../../dist/core.js'></script>
+  <script type="text/javascript">
+    const instance = new Typewriter('#typewriter', {
+      loop: true,
+      devMode: true,
+      onRemoveNode: (e) =>{console.log("remove node: " + e)}
+    });
+
+    // 이 style만 깔끔하게 지워낼 수 있으면 되는건데, 어떻게 지워낼 수 있는가가 관건이다. 
+
+    instance.typeString('<span class="d">d</span>')
+      .pauseFor(300)
+      .pasteString('<style> .d { background: #000; color: #FFF; } </style>')
+      .changeCursorPosition(1)
+      .clear()
+      .pauseFor(3000)
+      .start()
+  </script>
+
+</body>
+</html>

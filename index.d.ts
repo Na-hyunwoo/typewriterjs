@@ -40,6 +40,12 @@ declare module "typewriter-effect" {
      */
     autoStart?: boolean
     /**
+     * The pause duration after a string is typed when using autostart mode
+     *
+     * @default 1500
+     */
+    pauseFor?: number
+    /**
      * Whether or not to display console logs.
      *
      * @default false
@@ -133,7 +139,7 @@ declare module "typewriter-effect" {
      *
      * @param string  String to paste out, it can contain HTML tags
      */
-    pasteString(string: string, node: HTMLElement | null): TypewriterClass
+    pasteString(string: string, node?: HTMLElement | null): TypewriterClass
 
     /**
      * Delete everything that is visible inside of the typewriter wrapper
@@ -145,12 +151,32 @@ declare module "typewriter-effect" {
     deleteAll(speed?: Speed): TypewriterClass
 
     /**
-     * Delete and amount of characters, starting at the end of the visible
+     * Delete an amount of characters, starting at the cursor location
      * string.
      *
      * @param amount Number of characters
      */
     deleteChars(amount: number): TypewriterClass
+
+    /**
+     * Delete an amount of characters, starting at the cursor position.
+     * Opposed to calling the deleteAll or deleteChars option this function clears the number of 
+     * characters in a single operation without noticeable delay. 
+     * 
+     * @param amount Number of characters to delete. A value of 0 or negative removes everything
+     * @param boolean whether to call the onRemoveNode callback be called for each node. False by default
+     */
+    clear(amount?: number, callOnRemove? : boolean): TypewriterClass
+
+      /**
+     * Delete and amount of characters at the end of the string independently of the cursor position.
+     * Opposed to calling the deleteAll or deleteChars option this function clears the number of 
+     * characters in a single operation without noticeable delay. 
+     * 
+     * @param amount Number of characters to delete. A value of 0 or negative removes everything
+     * @param boolean whether to call the onRemoveNode callback be called for each node. False by default
+     */
+    clearEnd(amount?: number, callOnRemove? : boolean): TypewriterClass
 
     /**
      * Call a callback function. The first parameter to the callback elements
@@ -177,11 +203,31 @@ declare module "typewriter-effect" {
      * @param delay delay Number or 'natural'
      */
     changeDelay(delay?: Speed): TypewriterClass
+
+
+    /**
+     * Change the appearance of the cursor
+     *
+     * @param cursor the character that will be displayed int he cursor location
+     */
+    changeCursor(cursor: string): TypewriterClass
+
+
+    /**
+     * Move the cursor to the specified position. The cursor specified the location insert and deletion operations will be carried out from 
+     * and where the cursor will be visually displayed.
+     *
+     * @param position the character index the cursor will be moved to. The index is based on the visible number of characters typed.
+     * @param delay the number of milliseconds to pause before conduction this operation
+     */
+    changeCursorPosition(position: number, delay?: number): TypewriterClass
+
   }
 
   const TypewriterComponent: React.FunctionComponent<{
     onInit?: (typewriter: TypewriterClass) => void
     options?: Partial<Options>
+    component?: React.Component | string
   }>
 
   export default TypewriterComponent

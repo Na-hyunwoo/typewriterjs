@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Example - Change cursor position</title>
+</head>
+<body>
+
+  <div id="typewriter"></div>
+
+  <script src='../../dist/core.js'></script>
+  <!-- <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script> -->
+  <script type='text/javascript'>
+    const typewriter = new Typewriter('#typewriter', {
+      loop: true,
+      // deleteSpeed: 80,
+      // delay: 80,
+      deleteSpeed: 0,
+      delay: 0,
+    });
+
+    typewriter.typeString("Re")
+      .changeCursorPosition(2)
+      .typeString('<span class="b">b</span>')
+      .typeString('<span class="u">u</span>')
+      .typeString('<span class="i">i</span>')
+      .typeString('<span class="l">l</span>')
+      .typeString('<span class="_d">d</span>')
+      .typeString(" human writing,")
+      .pauseFor(1500)
+      .deleteChars(8)
+      .changeCursorPosition(7)
+      .changeCursor(' ')
+      .pasteString('<style> ._d { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .l { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .i { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .u { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .b { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .changeCursorPosition(7)
+      .deleteChars(5)
+      .callFunction(({ elements: { container } }) => {
+        const styles = container.getElementsByTagName("style")
+        for(const item of styles){
+          item.remove()
+        }
+        for(const item of styles){
+          item.remove()
+        }
+        for(const item of styles){
+          item.remove()
+        }
+      })
+      .changeCursor('|')
+      .pauseFor(500)
+      .typeString('<span class="d">d</span>')
+      .typeString('<span class="e">e</span>')
+      .typeString('<span class="s">s</span>')
+      .typeString('<span class="i">i</span>')
+      .typeString('<span class="g">g</span>')
+      .typeString('<span class="n">n</span>')
+      // pasteString을 하고난 뒤 커서의 위치는 설정되어 있찌만, callFunction을 통해서 강제로 삭제했기 때문에, 커서 위치를 제대로 설정해줘야 함. 39
+      .changeCursorPosition(210)
+      .typeString(" thinking")
+      .pauseFor(4000)
+      .deleteChars(8)
+      .changeCursorPosition(8)
+      .changeCursor(' ')
+      .pasteString('<style> .g { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .n { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .i { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .s { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .e { background: #000; color: #FFF; } </style>')
+      .pauseFor(50)
+      .pasteString('<style> .d { background: #000; color: #FFF; } </style>')
+      .changeCursorPosition(8)
+      .deleteChars(6)
+      .callFunction(({ elements: { container } }) => {
+        const styles = container.getElementsByTagName("style")
+        for(const item of styles){
+          item.remove()
+        }
+        for(const item of styles){
+          item.remove()
+        }
+        for(const item of styles){
+          item.remove()
+        }
+        for(const item of styles){
+          item.remove()
+        }
+      })
+      .changeCursorPosition(2)
+      .typeString('<span class="b">b</span>')
+      .typeString('<span class="u">u</span>')
+      .typeString('<span class="i">i</span>')
+      .typeString('<span class="l">l</span>')
+      .typeString('<span class="_d">d</span>')
+      .changeCursorPosition(459)
+      .typeString(" writing")
+      .pauseFor(1000)
+      .deleteChars(7)
+      .changeCursorPosition(445)
+      .deleteChars(7)
+      .changeCursorPosition(7)
+      .deleteChars(11)
+      .pauseFor(5000)
+      .start()
+  </script>
+</body>
+</html>
